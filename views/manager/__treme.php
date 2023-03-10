@@ -5,6 +5,7 @@
         <?php include 'css.php'; ?>
     </head>
     <body>
+        <div class="loading"><span class="loader"></span></div>
         <?php if ($this->section('login')):
             echo $this->section('login');
         else: ?>

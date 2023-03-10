@@ -25,6 +25,7 @@
     $router->group("manager");
     $router->get("/", "Manager:login");
     $router->get("/home", "Manager:home");
+    $router->get("/usuarios", "Manager:users");
 
     /*
      * Error

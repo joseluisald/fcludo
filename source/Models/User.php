@@ -13,6 +13,7 @@ class User extends DataLayer
     /**
      * User constructor.
      */
+    //string "TABLE_NAME", array ["REQUIRED_FIELD_1", "REQUIRED_FIELD_2"], string "PRIMARY_KEY", bool "TIMESTAMPS"
     public function __construct()
     {
         parent::__construct("usuarios", ["name", "email"]);

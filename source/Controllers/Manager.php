@@ -28,6 +28,10 @@ class Manager extends Controller
     {
         parent::__construct();
 //        $this->manager = new Admin();
+        if (session_status() !== PHP_SESSION_ACTIVE)
+        {
+            session_start();
+        }
     }
 
     /**
@@ -48,5 +52,22 @@ class Manager extends Controller
         echo $this->view->render("manager::pages/login", [
             "title" => "Login | Manager"
         ]);
+    }
+
+    /**
+     *
+     */
+    public function loginData()
+    {
+        $postData = $_POST;
+        echo json_encode($postData);
+    }
+
+    /**
+     *
+     */
+    public function logout()
+    {
+        session_destroy();
     }
 }
