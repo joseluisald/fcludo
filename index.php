@@ -1,4 +1,14 @@
 <?php
+    ob_start();
+
+    /*
+    * Inicia a sessão
+    */
+    if (session_status() !== PHP_SESSION_ACTIVE)
+    {
+        session_start();
+    }
+
     require __DIR__."/vendor/autoload.php";
 
     use CoffeeCode\Router\Router;
@@ -10,22 +20,7 @@
      */
     $router->namespace("Source\Controllers");
 
-    /*
-     * Web
-     */
-    $router->group(null);
-    $router->get("/", "Web:home");
-    $router->get("/contato", "Web:contact");
-    $router->get("/clientes", "Web:client");
-    $router->post("/addClient", "Web:addClient");
-
-    /*
-    * Manager
-    */
-    $router->group("manager");
-    $router->get("/", "Manager:login");
-    $router->get("/home", "Manager:home");
-    $router->get("/usuarios", "Manager:users");
+    include __DIR__.'/routes.php';
 
     /*
      * Error
@@ -39,8 +34,12 @@
      */
     $router->dispatch();
 
+    /*
+     * Error
+     */
     if($router->error())
     {
         $router->redirect("/ops/{$router->error()}");
     }
 
+    ob_end_flush();

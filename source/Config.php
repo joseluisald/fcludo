@@ -3,8 +3,30 @@
 /**
  *
  */
-define("URL_BASE", "http://localhost/estrutura_luis");
-define("SITE", "Luis");
+define('RAIZ', 			'fcludo');
+// define("SITE",          "FC Ludo");
+define("MINIFY",        FALSE);
+
+define("SITE", [
+    "name" => "FC Ludo",
+    "desc" => "",
+    "domain" => "",
+    "locale" => "pt-br",
+    "root" => "http://localhost/fcludo",
+    "raiz" => "fcludo"
+]);
+
+define('DEV_IPS',       $_SERVER['REMOTE_ADDR']);
+// define('DEV_IPS',        '');
+
+define('RAND',          TRUE);
+
+isset($_SERVER['HTTPS']) ? $protocolo = 'https' : $protocolo = 'http';
+$actual = $protocolo."://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+$explode = explode(RAIZ, $actual);
+$link = $explode[0].RAIZ;
+
+define("URL_BASE", $link);
 
 /**
  * Configuração do Banco de Dados
@@ -36,17 +58,7 @@ define("MAIL_CONFIG", [
     "from_email" => "jaldrighi@gmail.com",
 ]);
 
-/**
- * Configuração do Servidor AWS
- */
-define("AWS", [
-    "BUCKET_NAME" => "storageluis",
-    "AWS_REGION" => "sa-east-1",
-    "ACCESS_KEY_ID" => "AKIARJMRNSZ2WZ56VHKG",
-    "SECRET_ACCESS_KEY" => "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"
-]);
-
-
+//
 /**
  * @param string|null $uri
  * @return string
@@ -58,3 +70,24 @@ function url(string $uri = null): string
     }
     return URL_BASE;
 }
+
+/**
+ * Site Minify
+*/
+if($_SERVER['SERVER_NAME'] == "localhost")
+{
+    require __DIR__."/Minify.php";
+}
+
+$ips = explode(',', DEV_IPS);
+$ip = $_SERVER['REMOTE_ADDR'];
+if(!in_array($ip, $ips)) {
+    ini_set('display_errors',0); error_reporting(0);
+} else {
+    ini_set('display_errors', 1); error_reporting(E_ALL);
+}
+
+/**
+ *
+ */
+(RAND) ? define('RAND_NUM','?v_'.rand(100000,999999)) : define('RAND_NUM','');

@@ -12,7 +12,7 @@
             <?php include 'sidebar.php'; ?>
             <div class="home-section">
                 <div class="home-content">
-                    <i class='bx bx-menu' ></i>
+                    <i class='bx bx-menu'></i>
                     <span class="text">Drop Down Sidebar</span>
                 </div>
                 <main class="main_content">
@@ -22,6 +22,7 @@
         <?php endif ?>
 
         <input type="hidden" id="url_base" value="<?=URL_BASE?>"/>
+        <input type="hidden" id="raiz" value="<?=RAIZ?>"/>
 
         <?php include 'js.php'; ?>
 

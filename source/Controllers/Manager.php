@@ -8,7 +8,7 @@
 
 namespace Source\Controllers;
 
-use Source\Models\Admin;
+use Source\Models\User;
 
 /**
  * Class Manager
@@ -19,7 +19,7 @@ class Manager extends Controller
     /**
      * @var Manager
      */
-    private $manager;
+    private $user;
 
     /**
      * Manager constructor.
@@ -27,21 +27,24 @@ class Manager extends Controller
     public function __construct()
     {
         parent::__construct();
-//        $this->manager = new Admin();
-        if (session_status() !== PHP_SESSION_ACTIVE)
-        {
-            session_start();
-        }
+        $this->user = new User();
     }
 
     /**
      *
      */
-    public function home()
+    public function dashboard()
     {
-        echo $this->view->render("manager::pages/home", [
-            "title" => "Home | Manager"
-        ]);
+        if(isset($_SESSION['_user']) && !empty($_SESSION['_user']))
+        {
+            echo $this->view->render("manager::pages/home", [
+                "title" => "Home | Manager"
+            ]);
+        }
+        else
+        {
+            header("Location: ".url('manager'));
+        }
     }
 
     /**
@@ -49,18 +52,33 @@ class Manager extends Controller
      */
     public function login()
     {
-        echo $this->view->render("manager::pages/login", [
-            "title" => "Login | Manager"
-        ]);
+        if(!isset($_SESSION['_user']) && empty($_SESSION['_user']))
+        {
+            echo $this->view->render("manager::pages/login", [
+                "title" => "Login | Manager"
+            ]);
+        }
+        else
+        {
+            header("Location: ".url('manager/dashboard'));
+        }
     }
 
     /**
      *
      */
-    public function loginData()
+    public function auth()
     {
-        $postData = $_POST;
-        echo json_encode($postData);
+        $auth = $this->user->auth($_POST);
+        if($auth)
+        {
+            $_SESSION['_user'] = $auth->data();
+            $this->response->emit('Sucesso', 'Cadastro existe', 'success', 'login', $_SESSION);
+        }
+        else
+        {
+            $this->response->emit('Error', 'Erro ao logar-se. Verifique os dados inseridos', 'error');
+        }
     }
 
     /**
@@ -69,5 +87,6 @@ class Manager extends Controller
     public function logout()
     {
         session_destroy();
+        header("Location: ".url('manager'));
     }
 }

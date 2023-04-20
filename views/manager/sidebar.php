@@ -1,4 +1,4 @@
-<div class="sidebar close">
+<div class="sidebar">
     <div class="logo-details">
         <i class='bx bxl-c-plus-plus'></i>
         <span class="logo_name">Dashboard</span>
@@ -9,8 +9,8 @@
                 <i class='bx bx-grid-alt' ></i>
                 <span class="link_name">Dashboard</span>
             </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Menssagens</a></li>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Dashboard</a></li>
             </ul>
         </li>
         <li>
@@ -38,7 +38,7 @@
                     <div class="profile_name">Luis</div>
                     <div class="job">Admin</div>
                 </div>
-                <i class='bx bx-log-out' ></i>
+                <a href="<?=url('manager/logout')?>"><i class='bx bx-log-out'></i></a>
             </div>
         </li>
     </ul>

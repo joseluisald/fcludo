@@ -47,7 +47,7 @@
 
 .toast .toast-content .message .text
 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
     color: #666666;
 }
@@ -57,6 +57,7 @@
     font-weight: 600;
     font-size: 18px;
     color: #333;
+    text-align: left;
 }
 
 .toast .close

@@ -12,6 +12,8 @@ use PHPMailer\PHPMailer\PHPMailer;
  */
 class Email
 {
+//    use \EmailConfig;
+
     /** @var PHPMailer */
     private $mail;
 
@@ -30,12 +32,17 @@ class Email
         $this->data = new stdClass();
 
         $this->mail->isSMTP();
-        $this->mail->isHTML();
+        $this->mail->isHTML(true);
         $this->mail->setLanguage("br");
 
         $this->mail->SMTPAuth   = true;
         $this->mail->SMTPSecure = "tls";
         $this->mail->CharSet    = "utf-8";
+
+//        $this->mail->Host       = self::HOST;
+//        $this->mail->Username   = self::USER;
+//        $this->mail->Password   = self::PASSWD;
+//        $this->mail->Port       = self::PORT;
 
         $this->mail->Host       = MAIL_CONFIG["host"];
         $this->mail->Username   = MAIL_CONFIG["user"];
@@ -53,7 +60,7 @@ class Email
     public function add(string $subject, string $body, string $recipient_name, string $recipient_email): Email
     {
         $this->data->subject = $subject;
-        $this->data->body = $body;
+        $this->data->body = html_entity_decode($body);
         $this->data->recipient_name = $recipient_name;
         $this->data->recipient_email = $recipient_email;
         return $this;

@@ -57,3 +57,8 @@ closeIcon.addEventListener('click', () =>
         progress.classList.remove('active');
     }, 300);
 });
+
+// new Toast('Sucesso', 'Cadastro Realizado', 'success');
+// new Toast('Sucesso', 'Cadastro Realizado', 'warning');
+// new Toast('Sucesso', 'Cadastro Realizado', 'info');
+// new Toast('Sucesso', 'Cadastro Realizado', 'error');

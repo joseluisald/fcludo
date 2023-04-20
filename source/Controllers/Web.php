@@ -8,8 +8,6 @@
 
 namespace Source\Controllers;
 
-use Source\Models\User;
-
 /**
  * Class Web
  * @package Source\Controllers
@@ -17,17 +15,11 @@ use Source\Models\User;
 class Web extends Controller
 {
     /**
-     * @var User
-     */
-    private $users;
-
-    /**
      * Web constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->users = new User();
     }
 
     /**
@@ -36,37 +28,88 @@ class Web extends Controller
     public function home()
     {
         echo $this->view->render("site::pages/home", [
-            "title" => "Home | ".SITE,
-            "users" => $this->users->getUsers()
+            "title" => "Home | ".site('name')
         ]);
     }
 
-    /**
-     *
-     */
-    public function client()
+    public function quemSomos()
     {
-        echo $this->view->render("site::pages/client", [
-            "title" => "Cliente | ".SITE
+        echo $this->view->render("site::pages/quemSomos", [
+            "title" => "Quem Somos | ".site('name')
         ]);
     }
 
-    /**
-     *
-     */
-    public function addClient()
+    public function projetos()
     {
-        $postData = $this->users->addClient($_POST);
-        echo json_encode($postData);
-    }
-
-    /**
-     * @param $data
-     */
-    public function contact($data)
-    {
-        echo $this->view->render("site::pages/contact", [
-            "title" => "Contato | ".SITE
+        echo $this->view->render("site::pages/projetos", [
+            "title" => "Projetos | ".site('name')
         ]);
     }
+
+    public function lab()
+    {
+        echo $this->view->render("site::pages/lab", [
+            "title" => "Ludens Lab | ".site('name')
+        ]);
+    }
+
+    public function ludeka()
+    {
+        echo $this->view->render("site::pages/ludeka", [
+            "title" => "Ludeka | ".site('name')
+        ]);
+    }
+
+    public function spirit()
+    {
+        echo $this->view->render("site::pages/spirit", [
+            "title" => "Ludens Spirit | ".site('name')
+        ]);
+    }
+
+    public function suporte()
+    {
+        echo $this->view->render("site::pages/suporte", [
+            "title" => "Suporte | ".site('name')
+        ]);
+    }
+
+    public function perguntas()
+    {
+        echo $this->view->render("site::pages/perguntas", [
+            "title" => "Perguntas | ".site('name')
+        ]);
+    }
+
+    public function contato()
+    {
+        echo $this->view->render("site::pages/contato", [
+            "title" => "Contato | ".site('name')
+        ]);
+    }
+
+    public function login()
+    {
+        echo $this->view->render("site::pages/login", [
+            "title" => "Login | ".site('name')
+        ]);
+    }
+
+    public function auth()
+    {
+
+    }
+
+    public function cadastro()
+    {
+        echo $this->view->render("site::pages/cadastro", [
+            "title" => "Cadastro | ".site('name')
+        ]);
+    }
+
+    public function register()
+    {
+
+    }
+
 }

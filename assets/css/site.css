@@ -1,0 +1,49 @@
+/*
+*  ESTRUTURA PADRÃO DO SITE
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary: #4070f4;
+    --secondary: #00004F;
+    --terceary: #CFCFCF;
+    --grey1: #EBEBEB;
+    --grey2: rgba(217, 217, 217, 1.5);
+    --grey3: rgba(91, 91, 91, 0.9);
+    --white: #fff;
+    --black: #000;
+    --loader: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.error:not('label') {
+    border: 3px solid darkred;
+    text-align: left;
+}
+
+.success:not('label') {
+    boder: 3px solid green;
+    text-align: left;
+}
+
+label.error {
+    color: darkred;
+    font-weight: 600;
+    text-align: left;
+}
+
+label.success {
+    color: green;
+    font-weight: 600;
+    text-align: left;
+}

@@ -1,24 +1,17 @@
-<script type="text/javascript" src="<?=url("assets/js/jquery.js")?>"></script>
-
+<?php if(!MINIFY){ ?>
+    <script type="text/javascript" src="<?=url("assets/js/jquery.js")?>"></script>
+    <script type="text/javascript" src="<?=url("assets/js/fontawesome.js")?>" defer></script>
+    <script type="text/javascript" src="<?=url("assets/js/jquery.validate.min.js")?>"></script>
+    <script type="text/javascript" src="<?=url("assets/js/validate.pt-BR.js")?>"></script>
+    <script type="text/javascript" src="<?=url("assets/js/toast.min.js")?>"></script>
+    <script type="text/javascript" src="<?=url("assets/js/manager.js").RAND_NUM?>"></script>
+<?php } else { ?>
+    <script type="text/javascript" src="<?=url("assets/manager.min.js")?>"></script>
+<?php } ?>
 <script>
-
-    let LINK = $('#url_base').val();
-
-    window.onload = function(){
+    window.onload = function()
+    {
         $('.loading').fadeOut();
+        $('html').css('overflow-y', 'auto');
     };
-
-    let arrow = document.querySelectorAll(".arrow");
-    for (var i = 0; i < arrow.length; i++) {
-        arrow[i].addEventListener("click", (e)=>{
-            let arrowParent = e.target.parentElement.parentElement;
-            arrowParent.classList.toggle("showMenu");
-        });
-    }
-    let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".bx-menu");
-    console.log(sidebarBtn);
-    sidebarBtn.addEventListener("click", ()=>{
-        sidebar.classList.toggle("close");
-    });
 </script>

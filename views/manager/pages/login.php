@@ -8,11 +8,11 @@
                 <img src="https://dummyimage.com/350x350/FFF/000.png&text=LOGO" alt="Logo">
             </div>
             <div class="login-title">
-                <h2>Bem Vindo Luis</h2>
+                <h2>Bem Vindo</h2>
                 <h4>Faça seu Login</h4>
             </div>
             <div class="login-form">
-                <form class="form">
+                <form action="<?=url("manager/auth")?>" class="form" method="post">
                     <input class="input" type="email" name="email" placeholder="Seu E-mail">
                     <input class="input" type="password" name="pass" placeholder="Sua Senha">
                     <input class="btn" type="submit" name="login" value="Login">
