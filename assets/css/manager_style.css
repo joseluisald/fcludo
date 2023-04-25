@@ -1,0 +1,10 @@
+.btn-primary {
+    --bs-btn-bg: var(--sidebar-links);
+    --bs-btn-border-color: var(--sidebar-links);
+    --bs-btn-hover-bg: var(--sidebar-bg);
+    --bs-btn-hover-border-color: var(--sidebar-bg);
+    --bs-btn-active-bg: var(--sidebar-bg);
+    --bs-btn-active-border-color: var(--sidebar-bg);
+    --bs-btn-disabled-bg: var(--sidebar-links);
+    --bs-btn-disabled-border-color: var(--sidebar-links);
+}

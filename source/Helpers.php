@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @param string|null $uri
+ * @return string
+ */
 function site(string $param = null): string
 {
     if($param && !empty(SITE[$param])) {
@@ -7,4 +11,16 @@ function site(string $param = null): string
     }
 
     return SITE["root"];
+}
+
+/**
+ * @param string|null $uri
+ * @return string
+ */
+function url(string $uri = null): string
+{
+    if($uri) {
+        return URL_BASE."/{$uri}";
+    }
+    return URL_BASE;
 }

@@ -1,7 +1,9 @@
 const url = (param) =>
 {
     let link = $('#url_base').val();
-    return link+'/manager'+param;
+    let ret = link+'/manager';
+    if(param == '') ret = link+'/'+param;
+    return ret;
 }
 
 const cPage = () =>
@@ -107,7 +109,7 @@ $('.form').on('submit', function (e)
             {
                 case 'login':
                     window.location.href = url('/dashboard');
-                    localStorage.setItem("_user", data.config._user);
+                    localStorage.setItem("_user", JSON.parse(data.config._user));
                     break;
             }
         }
@@ -124,9 +126,26 @@ let App =
         }
     },
 
+    manager: () =>
+    {
+        $('.login-form .row-input .input').on('focus', e =>
+        {
+            $(e.target).parent().addClass('focus');
+            $(e.target).parent().find('i').addClass('focus');
+        });
+
+        $('.login-form .row-input .input').on('blur', e =>
+        {
+            $(e.target).parent().removeClass('focus');
+            $(e.target).parent().find('i').removeClass('focus');
+        });
+    },
+
     dashboard: () =>
     {}
 }
 
 App.init();
+dd(cPage());
+dd(url());
 try { eval('App.'+cPage()+'()'); } catch(err){ console.log(err.message); }

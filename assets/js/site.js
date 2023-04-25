@@ -2,7 +2,9 @@
 const url = (param) =>
 {
     let link = $('#url_base').val();
-    return link+param;
+    let ret = link;
+    if(param == '') ret = link+'/'+param;
+    return ret;
 }
 
 const cPage = () =>

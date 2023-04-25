@@ -4,7 +4,6 @@
  *
  */
 define('RAIZ', 			'fcludo');
-// define("SITE",          "FC Ludo");
 define("MINIFY",        FALSE);
 
 define("SITE", [
@@ -57,19 +56,6 @@ define("MAIL_CONFIG", [
     "from_name" => "José Luis",
     "from_email" => "jaldrighi@gmail.com",
 ]);
-
-//
-/**
- * @param string|null $uri
- * @return string
- */
-function url(string $uri = null): string
-{
-    if($uri) {
-        return URL_BASE."/{$uri}";
-    }
-    return URL_BASE;
-}
 
 /**
  * Site Minify

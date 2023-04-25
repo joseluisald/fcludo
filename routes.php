@@ -28,3 +28,8 @@ $router->get("/", "Manager:login", "manager.login");
 $router->post("/auth", "Manager:auth", "manager.auth");
 $router->get("/logout", "Manager:logout", "manager.logout");
 $router->get("/dashboard", "Manager:dashboard", "manager.dashboard");
+
+$router->get("/usuarios/cadastro", "Usuarios:cadastro", "usuarios.cadastro");
+$router->get("/usuarios/listar", "Usuarios:listar", "usuarios.listar");
+$router->get("/projetos/cadastro", "Projetos:cadastro", "projetos.cadastro");
+$router->get("/projetos/listar", "Projetos:listar", "projetos.listar");

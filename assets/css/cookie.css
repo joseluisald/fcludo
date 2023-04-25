@@ -9,6 +9,7 @@
     bottom: 20px;
     right: -370px;
     z-index: 1080;
+    box-shadow: rgba(0,0,0,.35) 0px 5px 15px;
 }
 .wrapper-cookie.show {
     right: 20px;
@@ -57,6 +58,7 @@
     width: calc(100% / 2 - 10px);
     cursor: pointer;
     transition: 0.2s;
+    font-size: 14px;
 }
 .wrapper-cookie .buttons .button:hover {
     background: var(--secondary);

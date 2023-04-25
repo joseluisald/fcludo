@@ -14,7 +14,8 @@
     --grey3: rgba(91, 91, 91, 0.9);
     --white: #fff;
     --black: #000;
-    --loader: #fff;
+    --loader-bg:#fff;
+    --loader-color: #4070f4;
 }
 
 * {
