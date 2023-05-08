@@ -1,26 +1,28 @@
-const url = (param) =>
+let link = $('#url_base').val();
+let raiz = $('#raiz').val();
+
+const url = (param = '') =>
 {
-    let link = $('#url_base').val();
     let ret = link+'/manager';
-    if(param == '') ret = link+'/'+param;
+    if(param !== '') ret += '/'+param;
     return ret;
+}
+
+const go = (param) =>
+{
+    window.location.href = url(param);
 }
 
 const cPage = () =>
 {
-    let raiz = $('#raiz').val();
     let arr = window.location.pathname.split('/');
-    if(arr[1] === raiz && arr[2] === "manager" && arr[3] !== undefined)
+    if(arr[1] === "manager" && arr[2] !== undefined)
     {
-        return arr[3];
-    }
-    else if(arr[1] === raiz && arr[2] === "manager")
-    {
-       return arr[2];
+        return arr[2];
     }
     else
     {
-        return false;
+        return 'manager';
     }
 }
 
@@ -84,7 +86,6 @@ $('.form').on('submit', function (e)
     e.preventDefault();
     let form = $(this)[0];
     let formData = new FormData(form);
-    // $('.loading').show();
     $.ajax(
     {
         type: form.method,
@@ -100,16 +101,27 @@ $('.form').on('submit', function (e)
         },
         success: function(data)
         {
-            ajax_load('close');
+            
             new Toast(data.title, data.text, data.type);
+            
             if(data.config.reset)
                 form.reset();
 
             switch(data.page)
             {
                 case 'login':
-                    window.location.href = url('/dashboard');
-                    localStorage.setItem("_user", JSON.parse(data.config._user));
+                    localStorage.setItem("_user", JSON.stringify(data.config._user));
+                    window.location.href = url('dashboard');
+                    break;
+                case 'usuarios':
+                    if(data.config.action == 'edit')
+                    {
+                        $('.avatarUser').attr('src', link+'/'+data.config.postData.file);
+                    }
+                    ajax_load('close');
+                    break;
+                default:
+                    ajax_load('close');
                     break;
             }
         }
@@ -142,10 +154,120 @@ let App =
     },
 
     dashboard: () =>
-    {}
+    {},
+
+    usuarios: () =>
+    {
+    },
+
+    menssagens: () =>
+    {
+        const paginator = page =>
+        {
+            $.ajax(
+                {
+                    type: 'POST',
+                    url: url('menssagens/getMessagesAjax'),
+                    data: {page},
+                    dataType: "json",
+                    beforeSend: function(load)
+                    {
+                        ajax_load('open');
+                    },
+                    success: function(data)
+                    {
+                        let html = '';
+                        $.each(data.messages, function(index, item)
+                        {
+                            html += '<tr data-id="'+item.id+'" class="clicable">';
+                            html += '<td>'+item.id+'</td>';
+                            html += '<td>'+item.name+'</td>';
+                            html += '<td>'+item.email+'</td>';
+                            html += '</tr>';
+                        });
+
+                        ajax_load('close');
+
+                        $('.showMessages').html(html);
+                        $('.div_paginator').html(data.paginator);
+                        $('.span_page').text(data.page);
+                        $('.span_pages').text(data.pages);
+                        $('.span_count').text(data.count);
+                    }
+                });
+        }
+
+        paginator(1);
+
+        $(document).on('click', 'nav.paginator .paginator_item', function(e)
+        {
+            e.preventDefault();
+            paginator($(this).attr('href').split('=')[1]);
+        });
+
+        $(document).on('click', '.clicable', function (e)
+        {
+            e.preventDefault();
+            let id = $(this).data('id');
+            let messageName = $('#messageName');
+            let messageEmail =  $('#messageEmail');
+            let messagePhone = $('#messagePhone');
+            let messageMessage = $('#messageMessage');
+            let messageData = $('#messageData');
+
+            $.ajax(
+                {
+                    type: 'POST',
+                    url: url('menssagens/readMessage'),
+                    data: {id},
+                    dataType: "json",
+                    beforeSend: function(load)
+                    {
+                        ajax_load('open');
+                        messageName.text('');
+                        messageEmail.text('');
+                        messagePhone.text('');
+                        messageMessage.text('');
+                        messageData.text('');
+                    },
+                    success: function(data)
+                    {
+                        ajax_load('close');
+
+                        messageName.text(data.name);
+                        messageEmail.text(data.email);
+                        messagePhone.text(data.phone);
+                        messageMessage.text(data.message);
+                        messageData.text(data.created_at);
+                    }
+                });
+        });
+    },
+
+    delete: (id, controller) =>
+    {
+        $.ajax(
+        {
+            type: 'POST',
+            url: url(controller+'/delete'),
+            data: {id},
+            dataType: "json",
+            beforeSend: function(load)
+            {
+                ajax_load('open');
+            },
+            success: function(data)
+            {
+                new Toast(data.title, data.text, data.type);
+                ajax_load('close');
+                $('tr[data-id="'+id+'"]').remove();
+            }
+        });
+    }
 }
 
 App.init();
 dd(cPage());
 dd(url());
+
 try { eval('App.'+cPage()+'()'); } catch(err){ console.log(err.message); }

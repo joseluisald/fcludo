@@ -33,6 +33,52 @@
 
 html {
     overflow: hidden;
+    background: var(--section-bg);
+    height: 100%;
+}
+
+.clicable {
+    cursor: pointer;
+}
+
+.paginator {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+    display: flex;
+    justify-content: end;
+}
+
+.paginator_item {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 4px 12px;
+    background: var(--sidebar-links);
+    color: var(--white);
+    text-decoration: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.paginator_item:hover {
+    background: var(--sidebar-bg);
+}
+
+.paginator_active,
+.paginator_active:hover {
+    background: var(--grey3);
+}
+
+pre {
+    margin-top: 30px;
+    background: var(--grey1);
+    padding: 10px;
+}
+
+paginatorHead {
+    font-size: 1rem;
+    text-align: end;
 }
 
 .sidebar{
@@ -522,7 +568,7 @@ input:-webkit-autofill:active {
     margin-top: 30px;
     border-radius: 6px;
     color: #333;
-    background: var(--write);
+    background: var(--white);
     width: 100%;
     /*box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);*/
 }
@@ -587,8 +633,10 @@ input:-webkit-autofill:active {
 .card [class*=card-header-] .card-text
 {
     float: none;
-    display: inline-block;
+    display: flex;
     margin-right: 0;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card [class*=card-header-] .card-icon,
@@ -600,6 +648,29 @@ input:-webkit-autofill:active {
     margin-top: -20px;
     margin-right: 15px;
     float: left;
+}
+
+.card .card-header .card-text .bx-right-arrow-alt,
+.card .card-header .card-text .bxs-plus-circle
+{
+    transition: all .2s ease;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.card .card-header .card-text .bx-right-arrow-alt:hover
+{
+    transform: translateX(5px);
+}
+
+.card .card-header .card-text .bxs-plus-circle:hover
+{
+    transform: scale(1.1);
+}
+
+.card .card-header .icons {
+    display: flex;
+    gap: 10px;
 }
 
 .card .card-header-primary .card-icon,
@@ -663,4 +734,29 @@ input:-webkit-autofill:active {
 .form-control:focus {
     border-color: inherit !important;
     box-shadow: 0 0 0 .1rem var(--sidebar-links) !important;
+}
+
+::-webkit-scrollbar
+{
+    width: 5px;
+    height: 7px;
+    transition: .3s linear;
+}
+
+::-webkit-scrollbar-button
+{
+    display: none;
+}
+
+::-webkit-scrollbar-track
+{
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: var(--sidebar-links);
+    border: none;
+    border-radius: 10px;
+    transition: .3s linear;
 }

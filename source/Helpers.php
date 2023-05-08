@@ -24,3 +24,11 @@ function url(string $uri = null): string
     }
     return URL_BASE;
 }
+
+/**
+ *
+ */
+enum Status: string
+{
+    case Admin = 'A';
+}

@@ -1,23 +1,24 @@
 
-const url = (param) =>
+let link = $('#url_base').val();
+let raiz = $('#raiz').val();
+
+const url = (param = '') =>
 {
-    let link = $('#url_base').val();
     let ret = link;
-    if(param == '') ret = link+'/'+param;
+    if(param !== '') ret += '/'+param;
     return ret;
 }
 
 const cPage = () =>
 {
-    let raiz = $('#raiz').val();
     let arr = window.location.pathname.split('/');
-    if(arr[1] === raiz && arr[2] !== undefined)
+    if(arr[1] !== undefined)
     {
-        return arr[2];
+        return arr[1];
     }
     else
     {
-        return false;
+        return 'home';
     }
 }
 
@@ -47,7 +48,6 @@ $('.form').on('submit', function (e)
     e.preventDefault();
     let form = $(this)[0];
     let formData = new FormData(form);
-    // $('.loading').show();
     $.ajax(
     {
         type: form.method,
@@ -65,8 +65,20 @@ $('.form').on('submit', function (e)
         {
             ajax_load('close');
             new Toast(data.title, data.text, data.type);
+
             if(data.config.reset)
                 form.reset();
+
+            switch(data.page)
+            {
+                case 'login':
+                    if(data.config.logged)
+                    {
+                        localStorage.setItem("_customer", JSON.stringify(data.config._customer));
+                        window.location.href = url('');
+                    }
+                    break;
+            }
         }
     });
 });

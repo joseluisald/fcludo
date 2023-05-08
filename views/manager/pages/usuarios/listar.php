@@ -7,7 +7,12 @@
                 <div class="card-header card-header-text card-header-primary">
                     <div class="card-text">
                         <h4 class="card-title">
-                            <i class='bx bx-list-ul'></i> <?=$title?></h4>
+                            <i class='bx bx-list-ul'></i> <?=$title?>
+                        </h4>
+                        <div class="icons">  
+                            <i class='bx bxs-plus-circle' onclick="go('usuarios/cadastro')"></i>                          
+                            <i class='bx bx-right-arrow-alt' onclick="history.back()"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -17,21 +22,28 @@
                                 <th>#</th>
                                 <th>Nome</th>
                                 <th>E-mail</th>
+                                <th>Telefone</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php for($i=0; $i <=10; $i++){ ?>
-                            <tr>
-                                <td>1</td>
-                                <td>Luis Aldrighi</td>
-                                <td>luis@create.art.br</td>
-                                <td class="actions">
-                                    <i class='bx bxs-edit'></i>
-                                    <i class='bx bxs-trash'></i>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                            <?php
+                            if($users):
+                                foreach($users as $user): ?>
+                                    <tr data-id="<?=$user->id?>">
+                                        <td><?=$user->id?></td>
+                                        <td><?=$user->name?></td>
+                                        <td><?=$user->email?></td>
+                                        <td><?=$user->phone?></td>
+                                        <td class="actions">
+                                            <i class='bx bxs-edit' onclick="go('usuarios/editar/<?=$user->id?>')"></i>
+                                            <i class='bx bxs-trash' onclick="App.delete(<?=$user->id?>, 'usuarios')"></i>
+                                        </td>
+                                    </tr>
+                            <?php
+                                endforeach;
+                            endif;
+                            ?>
                         </tbody>
                     </table>
                 </div>

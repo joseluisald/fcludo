@@ -1,0 +1,29 @@
+PROJETO FC - Reunião 
+-------------------------------------
+
+início e final
+valor
+apoiadores
+porcentagem
+meta
+
+-------
+metas com quantidades (+ e -) 
+limitado ou ilimitado
+campanhas diferentes no carrinho
+-------
+share: facebook / messenger / twitter / 
+-------
+
+pagamento:
+- cartão de crédito
+- PIX manual
+
+-----
+
+apoiadores declarados ou anonimos
+
+
+-----
+usuário coloca como recebido
+-----

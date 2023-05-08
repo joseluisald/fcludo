@@ -1,4 +1,4 @@
-.toast
+.toastfi
 {
     position: absolute;
     top: 25px;
@@ -11,21 +11,22 @@
     overflow: hidden;
 /*    transform: translateX(calc(100% + 30px));*/
     transition: all .5s cubic-bezier(.68, -.55, .265, 1.35);
+    z-index: 1038;
 }
 
-.toast.active
+.toastfi.active
 {
 /*    transform: translateX(0%);*/
     right: 30px;
 }
 
-.toast .toast-content
+.toastfi .toast-content
 {
     display: flex;
     align-items: center;
 }
 
-.toast .toast-content .check
+.toastfi .toast-content .check
 {
     height: 35px;
     width: 35px;
@@ -38,21 +39,21 @@
     place-content: center;
 }
 
-.toast .toast-content .message
+.toastfi .toast-content .message
 {
     display: flex;
     flex-direction: column;
     margin: 0 20px;
 }
 
-.toast .toast-content .message .text
+.toastfi .toast-content .message .text
 {
     font-size: 16px;
     font-weight: 400;
     color: #666666;
 }
 
-.toast .toast-content .message .text.text-1
+.toastfi .toast-content .message .text.text-1
 {
     font-weight: 600;
     font-size: 18px;
@@ -60,7 +61,7 @@
     text-align: left;
 }
 
-.toast .close
+.toastfi .close
 {
     position: absolute;
     top: 10px;
@@ -71,12 +72,12 @@
     transition: .2 linear;
 }
 
-.toast .close:hover
+.toastfi .close:hover
 {
     opacity: 1;
 }
 
-.toast .progress
+.toastfi .progress
 {
     position: absolute;
     bottom: 0;
@@ -86,7 +87,7 @@
     background: #ddd;
 }
 
-.toast .progress:before
+.toastfi .progress:before
 {
     content: '';
     position: absolute;
@@ -111,57 +112,57 @@
 }
 
 /*=========================================*/
-.toast.success {
+.toastfi.success {
     border-left: 6px solid #27ae60;
 }
 
-.toast.success .toast-content .check {
+.toastfi.success .toast-content .check {
     background: #27ae60;
 }
 
-.toast.success .progress:before
+.toastfi.success .progress:before
 {
     background: #27ae60;
 }
 
 /*=========================================*/
-.toast.warning {
+.toastfi.warning {
     border-left: 6px solid #ff9800;
 }
 
-.toast.warning .toast-content .check {
+.toastfi.warning .toast-content .check {
     background: #ff9800;
 }
 
-.toast.warning .progress:before
+.toastfi.warning .progress:before
 {
     background: #ff9800;
 }
 
 /*=========================================*/
-.toast.info {
+.toastfi.info {
     border-left: 6px solid #4070f4;
 }
 
-.toast.info .toast-content .check {
+.toastfi.info .toast-content .check {
     background: #4070f4;
 }
 
-.toast.info .progress:before
+.toastfi.info .progress:before
 {
     background: #4070f4;
 }
 
 /*=========================================*/
-.toast.error {
+.toastfi.error {
     border-left: 6px solid #c51919;
 }
 
-.toast.error .toast-content .check {
+.toastfi.error .toast-content .check {
     background: #c51919;
 }
 
-.toast.error .progress:before
+.toastfi.error .progress:before
 {
     background: #c51919;
 }

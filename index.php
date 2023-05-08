@@ -1,5 +1,8 @@
 <?php
     ob_start();
+    header('Content-type: text/html; charset=UTF-8');
+    header('Set-Cookie: fcludo=true; SameSite=None;Secure');
+    header("Access-Control-Allow-Origin: *");
 
     /*
     * Inicia a sessão
@@ -41,5 +44,4 @@
     {
         $router->redirect("/ops/{$router->error()}");
     }
-
     ob_end_flush();

@@ -6,14 +6,6 @@ namespace Source\Support;
  * Class Response
  * @package Source\Support
  */
-/**
- * Class Response
- * @package Source\Support
- */
-/**
- * Class Response
- * @package Source\Support
- */
 Class Response
 {
     /**
@@ -53,6 +45,15 @@ Class Response
         $this->page   = $page;
 
         echo json_encode($this->generateMsg());
+    }
+
+    /**
+     * @param $arr
+     * @return void
+     */
+    public function json($arr = array())
+    {
+        echo json_encode($arr);
     }
 
     /**

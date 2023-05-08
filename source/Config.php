@@ -3,7 +3,7 @@
 /**
  *
  */
-define('RAIZ', 			'fcludo');
+define('RAIZ', 			'.com');
 define("MINIFY",        FALSE);
 
 define("SITE", [
@@ -11,8 +11,8 @@ define("SITE", [
     "desc" => "",
     "domain" => "",
     "locale" => "pt-br",
-    "root" => "http://localhost/fcludo",
-    "raiz" => "fcludo"
+    "root" => "http://fcludo.sistchemas.com",
+    "raiz" => ".com"
 ]);
 
 define('DEV_IPS',       $_SERVER['REMOTE_ADDR']);
@@ -32,11 +32,11 @@ define("URL_BASE", $link);
  */
 const DATA_LAYER_CONFIG = [
     "driver" => "mysql",
-    "host" => "localhost",
+    "host" => "198.136.59.171",
     "port" => "3306",
-    "dbname" => "crud",
-    "username" => "root",
-    "passwd" => "",
+    "dbname" => "sistchem_fcludo",
+    "username" => "sistchem_fcludo",
+    "passwd" => "boraganharumagrana",
     "options" => [
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -65,6 +65,10 @@ if($_SERVER['SERVER_NAME'] == "localhost")
     require __DIR__."/Minify.php";
 }
 
+
+/**
+ *
+ */
 $ips = explode(',', DEV_IPS);
 $ip = $_SERVER['REMOTE_ADDR'];
 if(!in_array($ip, $ips)) {
@@ -77,3 +81,8 @@ if(!in_array($ip, $ips)) {
  *
  */
 (RAND) ? define('RAND_NUM','?v_'.rand(100000,999999)) : define('RAND_NUM','');
+
+/**
+ *
+ */
+setlocale(LC_MONETARY,"pt_BR.UTF-8");

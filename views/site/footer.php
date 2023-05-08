@@ -20,7 +20,7 @@
             <div class="col d-flex flex-column footer-links">
                 <h4>Links</h4>
                 <a href="<?=url('')?>">Home</a>
-                <a href="<?=url('quem-somos')?>">Quem somos</a>
+                <a href="<?=url('quem_somos')?>">Quem somos</a>
                 <a href="<?=url('projetos')?>">Projeto</a>
                 <a href="<?=url('lab')?>">Ludens Lab</a>
                 <a href="<?=url('ludeka')?>">Ludeka</a>

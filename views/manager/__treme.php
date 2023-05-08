@@ -13,7 +13,7 @@
             <div class="home-section">
                 <div class="home-content">
                     <i class='bx bx-menu'></i>
-                    <span class="text">Drop Down Sidebar</span>
+                    <span class="text">FC Ludo</span>
                 </div>
                 <main class="main_content">
                     <?=$this->section('content')?>

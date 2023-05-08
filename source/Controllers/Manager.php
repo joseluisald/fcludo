@@ -8,7 +8,7 @@
 
 namespace Source\Controllers;
 
-use Source\Models\User;
+use Source\Models\UserModel;
 
 /**
  * Class Manager
@@ -27,7 +27,7 @@ class Manager extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->user = new User();
+        $this->user = new UserModel();
     }
 
     /**
@@ -73,13 +73,21 @@ class Manager extends Controller
         if($auth)
         {
             $_SESSION['_user'] = $auth->data();
-            $this->response->emit('Sucesso', 'Cadastro existe', 'success', 'login', $_SESSION);
+
+            $image = $this->user->getUsersImage($auth->data()->id);
+            if($image || !is_null($image))
+                $_SESSION['_user']->image = $image->data()->image;
+            else
+                $_SESSION['_user']->image = null;
+
+            $this->response->emit('Sucesso', 'Bem vindo '.$auth->data()->name, 'success', 'login', $_SESSION);
         }
         else
         {
             $this->response->emit('Error', 'Erro ao logar-se. Verifique os dados inseridos', 'error');
         }
     }
+
 
     /**
      *

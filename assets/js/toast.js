@@ -1,10 +1,10 @@
 var body = document.getElementsByTagName("body")[0];
 body.insertAdjacentHTML(
     "beforeend",
-    '<div class="toast"> <div class="toast-content"> <span class="icon"></i></span> <div class="message"> <span class="text text-1"></span> <span class="text text-2"></span> </div></div><i class="fa-solid fa-xmark close"></i> <div class="progress"></div></div>'
+    '<div class="toastfi"> <div class="toast-content"> <span class="icon"></i></span> <div class="message"> <span class="text text-1"></span> <span class="text text-2"></span> </div></div><i class="fa-solid fa-xmark close"></i> <div class="progress"></div></div>'
 );
 
-const toast = document.querySelector('.toast');
+const toast = document.querySelector('.toastfi');
 const closeIcon = document.querySelector('.close');
 const progress = document.querySelector('.progress');
 const title = document.querySelector('.text-1');

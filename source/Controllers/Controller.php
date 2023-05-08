@@ -10,6 +10,7 @@ namespace Source\Controllers;
 
 use League\Plates\Engine;
 use Source\Support\Response;
+// use Source\Support\Session;
 
 /**
  * Class Controller
@@ -25,6 +26,10 @@ class Controller
      * @var Response
      */
     protected $response;
+    /**
+     * @var Session
+     */
+    // protected $session;
 
     /**
      * Controller constructor.
@@ -35,6 +40,7 @@ class Controller
         $this->view->addFolder('manager', __DIR__."/../../views/manager");
         $this->view->addFolder('site', __DIR__."/../../views/site");
         $this->response = new Response();
+        // $this->session = new Session();
     }
 
     /**
